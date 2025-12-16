@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 AOC_SESSION=os.getenv('AOC_SESSION')
 
-def mostCurrentYear():
+def mostCurrentYear() -> int:
     # check month
     if date.today().month == 12:
         year = date.today().year
@@ -45,16 +45,16 @@ def getDay(day:int, year:int):
         f.write(question)
 
     # get and write text input data
-    test = sorted(desc.find_all('code'), key=lambda x: len(x.get_text()), reverse=True)
-    with open(f'{directoryName}/test.txt', 'w', encoding='utf8') as f:
-        data = test[0].get_text().strip()
-        f.write(data)
+    test = aocd.models.Puzzle(day=day, year=year).examples
+    for i, data in enumerate(test):
+        with open(f'{directoryName}/test{i}.txt', 'w', encoding='utf8') as f:
+            f.write(data.input_data.strip())
 
 if __name__ == '__main__':
     # args
     parser = argparse.ArgumentParser()
-    parser.add_argument('--day')
-    parser.add_argument('--year', nargs="?")
+    parser.add_argument( '-d', '--day')
+    parser.add_argument('-y', '--year', nargs="?")
     args = parser.parse_args()
 
     day = int(args.day)
