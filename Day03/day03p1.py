@@ -2,16 +2,18 @@ def prettyPrint(array: list[str]):
     for i in array:
         print(i.strip())
 
-def parseInput(input: str) -> list:
+
+def parseInput(input: list[str]) -> list:
     banks = []
     for line in input:
         banks.append(tuple([int(x) for x in line.strip()]))
     return banks
 
+
 def findMaximumJoltage(bank: tuple[int]) -> int:
     aPos = 0
     aVal = bank[aPos]
-    
+
     for i in range(1, len(bank) - 1):
         # print(i)
         if bank[i] > aVal:
@@ -24,8 +26,9 @@ def findMaximumJoltage(bank: tuple[int]) -> int:
         # print(j)
         if bank[j] > bVal:
             bVal = bank[j]
-    
-    return int(str(aVal)+str(bVal))
+
+    return int(str(aVal) + str(bVal))
+
 
 def main() -> int:
     ## input
@@ -37,9 +40,9 @@ def main() -> int:
     totalJoltage = 0
     for bank in banks:
         totalJoltage += findMaximumJoltage(bank)
-    
+
     return totalJoltage
 
-if __name__ == '__main__':
-    print(f'The answer is: {main()}')
 
+if __name__ == "__main__":
+    print(f"The answer is: {main()}")

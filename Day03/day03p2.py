@@ -2,11 +2,13 @@ def prettyPrint(array: list[str]):
     for i in array:
         print(i.strip())
 
-def parseInput(input: str) -> list:
+
+def parseInput(input: list[str]) -> list:
     banks = []
     for line in input:
         banks.append(tuple([int(x) for x in line.strip()]))
     return banks
+
 
 # don't look
 def findMaximumJoltage(bank: tuple[int]) -> int:
@@ -14,7 +16,7 @@ def findMaximumJoltage(bank: tuple[int]) -> int:
 
     aPos = 0
     aVal = bank[aPos]
-    
+
     for a in range(1, len(bank) - 11):
         # print(a)
         if bank[a] > aVal:
@@ -24,7 +26,7 @@ def findMaximumJoltage(bank: tuple[int]) -> int:
     activatedBatteries.append(aVal)
     bPos = aPos + 1
     bVal = bank[bPos]
-    
+
     for b in range(bPos + 1, len(bank) - 10):
         # print(b)
         if bank[b] > bVal:
@@ -58,7 +60,7 @@ def findMaximumJoltage(bank: tuple[int]) -> int:
         if bank[e] > eVal:
             eVal = bank[e]
             ePos = e
-    
+
     activatedBatteries.append(eVal)
     fPos = ePos + 1
     fVal = bank[fPos]
@@ -124,7 +126,7 @@ def findMaximumJoltage(bank: tuple[int]) -> int:
 
     activatedBatteries.append(lVal)
 
-    return int(''.join(str(x) for x in activatedBatteries))
+    return int("".join(str(x) for x in activatedBatteries))
 
 
 def findMaximumJoltageNew(bank: tuple[int], numOfBatteries: int) -> int:
@@ -132,7 +134,7 @@ def findMaximumJoltageNew(bank: tuple[int], numOfBatteries: int) -> int:
     count = 0
 
     lastPos = -1
-    
+
     while count != numOfBatteries:
         aPos = lastPos + 1
         aVal = bank[aPos]
@@ -140,13 +142,13 @@ def findMaximumJoltageNew(bank: tuple[int], numOfBatteries: int) -> int:
             if bank[a] > aVal:
                 aVal = bank[a]
                 aPos = a
-        
+
         lastPos = aPos
         activatedBatteries.append(aVal)
 
         count += 1
 
-    return int(''.join(str(x) for x in activatedBatteries))
+    return int("".join(str(x) for x in activatedBatteries))
 
 
 def main() -> int:
@@ -159,9 +161,9 @@ def main() -> int:
     totalJoltage = 0
     for bank in banks:
         totalJoltage += findMaximumJoltageNew(bank, 12)
-    
+
     return totalJoltage
 
-if __name__ == '__main__':
-    print(f'The answer is: {main()}')
 
+if __name__ == "__main__":
+    print(f"The answer is: {main()}")

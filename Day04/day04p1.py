@@ -2,16 +2,9 @@ def prettyPrint(array: list[str]):
     for i in array:
         print(i.strip())
 
+
 def checkDirections(grid, rollCoord) -> int:
-    coords = ((-1, -1),
-        (-1, 0),
-        (-1, 1),
-        (0, -1),
-        (0, 1),
-        (1, -1),
-        (1, 0),
-        (1, 1)
-    )
+    coords = ((-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1))
 
     rX, rY = rollCoord
 
@@ -20,21 +13,23 @@ def checkDirections(grid, rollCoord) -> int:
         i = x + rX
         j = y + rY
         if (i >= 0 and i < len(grid)) and (j >= 0 and j < len(grid[0])):
-            if grid[i][j] == '@':
+            if grid[i][j] == "@":
                 rollCount += 1
-    
+
     print(rollCoord, rollCount)
     return rollCount
+
 
 def checkRolls(grid) -> int:
     count = 0
     for xPos, line in enumerate(grid):
         for yPos, val in enumerate(line):
-            if val == '@':
+            if val == "@":
                 if checkDirections(grid, (xPos, yPos)) < 4:
                     count += 1
-    
+
     return count
+
 
 def main() -> int:
     ## input
@@ -46,5 +41,5 @@ def main() -> int:
     return checkRolls(grid)
 
 
-if __name__ == '__main__':
-    print(f'The answer is: {main()}')
+if __name__ == "__main__":
+    print(f"The answer is: {main()}")

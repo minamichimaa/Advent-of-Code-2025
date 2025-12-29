@@ -2,11 +2,12 @@ def prettyPrint(array: list[str]):
     for i in array:
         print(i.strip())
 
+
 def rotate(currentNum: int, direction: str, amount: int) -> tuple[int, int]:
     fullRotations = amount // 100
     remainder = amount - (100 * fullRotations)
 
-    if direction == 'L':
+    if direction == "L":
         newNum = currentNum - remainder
     else:
         newNum = currentNum + remainder
@@ -23,6 +24,7 @@ def parseInstruction(instruction: str) -> tuple[str, int]:
 
     return (direction, amount)
 
+
 def main() -> int:
     ## input
     with open("input.txt", "r") as f:
@@ -33,11 +35,12 @@ def main() -> int:
     for instruction in textIn:
         dir, amount = parseInstruction(instruction)
         currentNum, passedZero = rotate(currentNum, dir, amount)
-        print(dir+str(amount), currentNum, passedZero)
+        print(dir + str(amount), currentNum, passedZero)
         if passedZero:
             zeroCount += passedZero
-    
+
     return zeroCount
 
-if __name__ == '__main__':
-    print(f'The answer is: {main()}')
+
+if __name__ == "__main__":
+    print(f"The answer is: {main()}")
